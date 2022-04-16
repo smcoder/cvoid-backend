@@ -13,6 +13,8 @@ public class SmCount implements Serializable {
 
     private Integer addressId;
 
+    private String addressName;
+
     private Integer newAdd;
 
     private Integer sumCount;

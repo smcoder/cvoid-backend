@@ -18,7 +18,9 @@ public class News implements Serializable {
 
     private String content;
 
-    private Date publishTime;
+    private String publishTime;
+
+    private String source;
 
     private static final long serialVersionUID = 1L;
 }
