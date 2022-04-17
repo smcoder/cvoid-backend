@@ -3,7 +3,7 @@
 <mapper namespace="org.smcoder.cvoid.dao.SmCountDao">
   <resultMap id="BaseResultMap" type="org.smcoder.cvoid.domain.SmCount">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="address_id" jdbcType="INTEGER" property="addressId" />
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
     <result column="new_add" jdbcType="INTEGER" property="newAdd" />
     <result column="sum_count" jdbcType="INTEGER" property="sumCount" />
     <result column="good_count" jdbcType="INTEGER" property="goodCount" />
@@ -114,7 +114,7 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.smcoder.cvoid.domain.SmCount" useGeneratedKeys="true">
     insert into sm_count (address_id, new_add, sum_count, 
       good_count, death_count)
-    values (#{addressId,jdbcType=INTEGER}, #{newAdd,jdbcType=INTEGER}, #{sumCount,jdbcType=INTEGER}, 
+    values (#{addressId,jdbcType=VARCHAR}, #{newAdd,jdbcType=INTEGER}, #{sumCount,jdbcType=INTEGER},
       #{goodCount,jdbcType=INTEGER}, #{deathCount,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.smcoder.cvoid.domain.SmCount" useGeneratedKeys="true">
@@ -167,7 +167,7 @@
         id = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.addressId != null">
-        address_id = #{record.addressId,jdbcType=INTEGER},
+        address_id = #{record.addressId,jdbcType=VARCHAR},
       </if>
       <if test="record.newAdd != null">
         new_add = #{record.newAdd,jdbcType=INTEGER},
@@ -189,7 +189,7 @@
   <update id="updateByExample" parameterType="map">
     update sm_count
     set id = #{record.id,jdbcType=INTEGER},
-      address_id = #{record.addressId,jdbcType=INTEGER},
+      address_id = #{record.addressId,jdbcType=VARCHAR},
       new_add = #{record.newAdd,jdbcType=INTEGER},
       sum_count = #{record.sumCount,jdbcType=INTEGER},
       good_count = #{record.goodCount,jdbcType=INTEGER},
@@ -202,7 +202,7 @@
     update sm_count
     <set>
       <if test="addressId != null">
-        address_id = #{addressId,jdbcType=INTEGER},
+        address_id = #{addressId,jdbcType=VARCHAR},
       </if>
       <if test="newAdd != null">
         new_add = #{newAdd,jdbcType=INTEGER},
@@ -221,7 +221,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.smcoder.cvoid.domain.SmCount">
     update sm_count
-    set address_id = #{addressId,jdbcType=INTEGER},
+    set address_id = #{addressId,jdbcType=VARCHAR},
       new_add = #{newAdd,jdbcType=INTEGER},
       sum_count = #{sumCount,jdbcType=INTEGER},
       good_count = #{goodCount,jdbcType=INTEGER},

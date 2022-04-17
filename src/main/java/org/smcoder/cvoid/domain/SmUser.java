@@ -13,13 +13,13 @@ public class SmUser implements Serializable {
 
     private String account;
 
-    private String pwd;
+    private String password;
 
     private String name;
 
     private String phone;
 
-    private Integer addressId;
+    private String addressId;
 
     private Integer role;
 

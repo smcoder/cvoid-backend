@@ -11,6 +11,5 @@ import java.util.List;
  */
 @Repository
 public interface RebotDao extends MyBatisBaseDao<Rebot, Integer> {
-
     List<Rebot> selectByExample(RebotExample example);
 }

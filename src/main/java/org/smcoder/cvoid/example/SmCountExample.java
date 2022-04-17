@@ -204,37 +204,37 @@ public class SmCountExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdEqualTo(Integer value) {
+        public Criteria andAddressIdEqualTo(String value) {
             addCriterion("address_id =", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotEqualTo(Integer value) {
+        public Criteria andAddressIdNotEqualTo(String value) {
             addCriterion("address_id <>", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdGreaterThan(Integer value) {
+        public Criteria andAddressIdGreaterThan(String value) {
             addCriterion("address_id >", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAddressIdGreaterThanOrEqualTo(String value) {
             addCriterion("address_id >=", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLessThan(Integer value) {
+        public Criteria andAddressIdLessThan(String value) {
             addCriterion("address_id <", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLessThanOrEqualTo(Integer value) {
+        public Criteria andAddressIdLessThanOrEqualTo(String value) {
             addCriterion("address_id <=", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdIn(List<Integer> values) {
+        public Criteria andAddressIdIn(List<String> values) {
             addCriterion("address_id in", values, "addressId");
             return (Criteria) this;
         }
@@ -244,12 +244,12 @@ public class SmCountExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdBetween(Integer value1, Integer value2) {
+        public Criteria andAddressIdBetween(String value1, String value2) {
             addCriterion("address_id between", value1, value2, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andAddressIdNotBetween(String value1, String value2) {
             addCriterion("address_id not between", value1, value2, "addressId");
             return (Criteria) this;
         }

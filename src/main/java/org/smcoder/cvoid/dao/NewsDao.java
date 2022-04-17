@@ -11,6 +11,5 @@ import java.util.List;
  */
 @Repository
 public interface NewsDao extends MyBatisBaseDao<News, Integer> {
-
     List<News> selectByExample(NewsExample example);
 }

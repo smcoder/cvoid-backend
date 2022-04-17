@@ -11,9 +11,7 @@ import lombok.Data;
 public class SmCount implements Serializable {
     private Integer id;
 
-    private Integer addressId;
-
-    private String addressName;
+    private String addressId;
 
     private Integer newAdd;
 

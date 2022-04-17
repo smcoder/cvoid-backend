@@ -1,7 +1,6 @@
 package org.smcoder.cvoid.example;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class NewsExample {
@@ -205,52 +204,62 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdEqualTo(Integer value) {
+        public Criteria andAddressIdEqualTo(String value) {
             addCriterion("address_id =", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotEqualTo(Integer value) {
+        public Criteria andAddressIdNotEqualTo(String value) {
             addCriterion("address_id <>", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdGreaterThan(Integer value) {
+        public Criteria andAddressIdGreaterThan(String value) {
             addCriterion("address_id >", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAddressIdGreaterThanOrEqualTo(String value) {
             addCriterion("address_id >=", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLessThan(Integer value) {
+        public Criteria andAddressIdLessThan(String value) {
             addCriterion("address_id <", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdLessThanOrEqualTo(Integer value) {
+        public Criteria andAddressIdLessThanOrEqualTo(String value) {
             addCriterion("address_id <=", value, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdIn(List<Integer> values) {
+        public Criteria andAddressIdLike(String value) {
+            addCriterion("address_id like", value, "addressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIdNotLike(String value) {
+            addCriterion("address_id not like", value, "addressId");
+            return (Criteria) this;
+        }
+
+        public Criteria andAddressIdIn(List<String> values) {
             addCriterion("address_id in", values, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotIn(List<Integer> values) {
+        public Criteria andAddressIdNotIn(List<String> values) {
             addCriterion("address_id not in", values, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdBetween(Integer value1, Integer value2) {
+        public Criteria andAddressIdBetween(String value1, String value2) {
             addCriterion("address_id between", value1, value2, "addressId");
             return (Criteria) this;
         }
 
-        public Criteria andAddressIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andAddressIdNotBetween(String value1, String value2) {
             addCriterion("address_id not between", value1, value2, "addressId");
             return (Criteria) this;
         }
@@ -405,52 +414,62 @@ public class NewsExample {
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeEqualTo(Date value) {
+        public Criteria andPublishTimeEqualTo(String value) {
             addCriterion("publish_time =", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotEqualTo(Date value) {
+        public Criteria andPublishTimeNotEqualTo(String value) {
             addCriterion("publish_time <>", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeGreaterThan(Date value) {
+        public Criteria andPublishTimeGreaterThan(String value) {
             addCriterion("publish_time >", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeGreaterThanOrEqualTo(Date value) {
+        public Criteria andPublishTimeGreaterThanOrEqualTo(String value) {
             addCriterion("publish_time >=", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeLessThan(Date value) {
+        public Criteria andPublishTimeLessThan(String value) {
             addCriterion("publish_time <", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeLessThanOrEqualTo(Date value) {
+        public Criteria andPublishTimeLessThanOrEqualTo(String value) {
             addCriterion("publish_time <=", value, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeIn(List<Date> values) {
+        public Criteria andPublishTimeLike(String value) {
+            addCriterion("publish_time like", value, "publishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishTimeNotLike(String value) {
+            addCriterion("publish_time not like", value, "publishTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublishTimeIn(List<String> values) {
             addCriterion("publish_time in", values, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotIn(List<Date> values) {
+        public Criteria andPublishTimeNotIn(List<String> values) {
             addCriterion("publish_time not in", values, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeBetween(Date value1, Date value2) {
+        public Criteria andPublishTimeBetween(String value1, String value2) {
             addCriterion("publish_time between", value1, value2, "publishTime");
             return (Criteria) this;
         }
 
-        public Criteria andPublishTimeNotBetween(Date value1, Date value2) {
+        public Criteria andPublishTimeNotBetween(String value1, String value2) {
             addCriterion("publish_time not between", value1, value2, "publishTime");
             return (Criteria) this;
         }

@@ -11,6 +11,5 @@ import java.util.List;
  */
 @Repository
 public interface RegionDao extends MyBatisBaseDao<Region, Integer> {
-
     List<Region> selectByExample(RegionExample example);
 }

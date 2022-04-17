@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SmUserDao extends MyBatisBaseDao<SmUser, Integer> {
-
     SmUser selectByExample(SmUserExample example);
 }

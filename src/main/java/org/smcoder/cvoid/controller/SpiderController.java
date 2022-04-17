@@ -49,7 +49,7 @@ public class SpiderController {
                     continue;
                 }
                 JSONArray sumList = item.getJSONArray("children");
-                for (int tindex = 0; tindex < sumList.size(); index++) {
+                for (int tindex = 0; tindex < sumList.size(); tindex++) {
                     JSONObject province = sumList.getJSONObject(tindex);
                     if (!regionMap.containsKey(province.getString("name"))) {
                         regionMap.put(province.getString("name"), new HashSet<>());
@@ -73,11 +73,15 @@ public class SpiderController {
                     smCount.setGoodCount(heal);
                     smCount.setDeathCount(dead);
                     smCount.setNewAdd(suspect);
-                    smCount.setAddressName(provinceName);
+
+//                    RegionExample example = new RegionExample();
+//                    example.createCriteria().andProvinceEqualTo(provinceName);
+//                    List<Region> regions = regionDao.selectByExample(example);
+                    smCount.setAddressId(provinceName);
                     countDao.insertSelective(smCount);
 
                     JSONArray cityArray = province.getJSONArray("children");
-                    for (int cindex = 0; cindex < cityArray.size(); index++) {
+                    for (int cindex = 0; cindex < cityArray.size(); cindex++) {
                         JSONObject city = cityArray.getJSONObject(cindex);
                         if (city.getString("name").equals("未明确地区")) {
                             continue;
@@ -115,26 +119,29 @@ public class SpiderController {
                 String key = region.getProvince() + region.getCity();
                 String result = httpAPIService.doGet("https://opendata.baidu.com/data/inner?tn=reserved_all_res_tn&dspName=iphone&from_sf=1&dsp=iphone&resource_id=28565&alr=1&query=" + key + "新型肺炎最新动态");
                 JSONObject resultObject = JSON.parseObject(result);
-                JSONArray itemArray = resultObject.getJSONObject("Result").getJSONArray("items_v2");
+                if (null == resultObject.getJSONArray("Result") || resultObject.getJSONArray("Result").size() < 1) {
+                    continue;
+                }
+                JSONArray itemArray = resultObject.getJSONArray("Result").getJSONObject(0).getJSONArray("items_v2");
                 JSONArray newsArray = itemArray.getJSONObject(0).getJSONObject("aladdin_res").getJSONObject("DisplayData").getJSONObject("result").getJSONArray("items");
 
                 for (int i = 0; i < newsArray.size(); i++) {
                     JSONObject tempObject = newsArray.getJSONObject(i);
                     // 新闻标题-需要解码
-                    String title = unicodeToString(tempObject.getString("eventDescription"));
+                    String title = tempObject.getString("eventDescription");
                     // 发布日期
                     String date = tempObject.getString("eventTime");
                     // 新闻URL
                     String sourceUrl = tempObject.getString("eventUrl");
                     // 来源-需要解码
-                    String sourceName = unicodeToString(tempObject.getString("siteName"));
+                    String sourceName = tempObject.getString("siteName");
 
                     News news = new News();
                     news.setContent(sourceUrl);
                     news.setTitle(title);
                     news.setPublishTime(convertTime(date));
-                    news.setSource(sourceName);
-                    news.setAddressId(region.getId());
+                    news.setAddressId(region.getProvince());
+                    newsDao.insertSelective(news);
                 }
             }
         }

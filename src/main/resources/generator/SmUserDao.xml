@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.smcoder.cvoid.dao.NewsDao">
-  <resultMap id="BaseResultMap" type="org.smcoder.cvoid.domain.News">
+<mapper namespace="org.smcoder.cvoid.dao.SmUserDao">
+  <resultMap id="BaseResultMap" type="org.smcoder.cvoid.domain.SmUser">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="address_id" jdbcType="INTEGER" property="addressId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address_id" jdbcType="VARCHAR" property="addressId" />
+    <result column="role" jdbcType="INTEGER" property="role" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, address_id, title, content, publish_time
+    id, account, `password`, `name`, phone, address_id, `role`
   </sql>
-  <select id="selectByExample" parameterType="org.smcoder.cvoid.example.NewsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.smcoder.cvoid.example.SmUserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from news
+    from sm_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -97,79 +99,99 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from news
+    from sm_user
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from news
+    delete from sm_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="org.smcoder.cvoid.example.NewsExample">
-    delete from news
+  <delete id="deleteByExample" parameterType="org.smcoder.cvoid.example.SmUserExample">
+    delete from sm_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.smcoder.cvoid.domain.News" useGeneratedKeys="true">
-    insert into news (address_id, title, content, 
-      publish_time)
-    values (#{addressId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{publishTime,jdbcType=TIMESTAMP})
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.smcoder.cvoid.domain.SmUser" useGeneratedKeys="true">
+    insert into sm_user (account, `password`, `name`, 
+      phone, address_id, `role`
+      )
+    values (#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{addressId,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.smcoder.cvoid.domain.News" useGeneratedKeys="true">
-    insert into news
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.smcoder.cvoid.domain.SmUser" useGeneratedKeys="true">
+    insert into sm_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
       <if test="addressId != null">
         address_id,
       </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="content != null">
-        content,
-      </if>
-      <if test="publishTime != null">
-        publish_time,
+      <if test="role != null">
+        `role`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
       <if test="addressId != null">
-        #{addressId,jdbcType=INTEGER},
+        #{addressId,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null">
-        #{publishTime,jdbcType=TIMESTAMP},
+      <if test="role != null">
+        #{role,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.smcoder.cvoid.example.NewsExample" resultType="java.lang.Long">
-    select count(*) from news
+  <select id="countByExample" parameterType="org.smcoder.cvoid.example.SmUserExample" resultType="java.lang.Long">
+    select count(*) from sm_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update news
+    update sm_user
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        `password` = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
       <if test="record.addressId != null">
-        address_id = #{record.addressId,jdbcType=INTEGER},
+        address_id = #{record.addressId,jdbcType=VARCHAR},
       </if>
-      <if test="record.title != null">
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
-      </if>
-      <if test="record.publishTime != null">
-        publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      <if test="record.role != null">
+        `role` = #{record.role,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -177,40 +199,50 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update news
+    update sm_user
     set id = #{record.id,jdbcType=INTEGER},
-      address_id = #{record.addressId,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=VARCHAR},
-      publish_time = #{record.publishTime,jdbcType=TIMESTAMP}
+      account = #{record.account,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      address_id = #{record.addressId,jdbcType=VARCHAR},
+      `role` = #{record.role,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.smcoder.cvoid.domain.News">
-    update news
+  <update id="updateByPrimaryKeySelective" parameterType="org.smcoder.cvoid.domain.SmUser">
+    update sm_user
     <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
       <if test="addressId != null">
-        address_id = #{addressId,jdbcType=INTEGER},
+        address_id = #{addressId,jdbcType=VARCHAR},
       </if>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="publishTime != null">
-        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      <if test="role != null">
+        `role` = #{role,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.smcoder.cvoid.domain.News">
-    update news
-    set address_id = #{addressId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      content = #{content,jdbcType=VARCHAR},
-      publish_time = #{publishTime,jdbcType=TIMESTAMP}
+  <update id="updateByPrimaryKey" parameterType="org.smcoder.cvoid.domain.SmUser">
+    update sm_user
+    set account = #{account,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=VARCHAR},
+      `role` = #{role,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
