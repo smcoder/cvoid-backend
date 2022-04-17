@@ -169,6 +169,31 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <select id="selectList" resultType="org.smcoder.cvoid.domain.SmUser" parameterType="org.smcoder.cvoid.domain.PageUser">
+    select
+        <include refid="Base_Column_List"></include>
+        from sm_user
+    <where>
+      <if test="null != account and '' != account">
+        account = #{account}
+      </if>
+      <if test="null != password and '' != password">
+        password = #{password}
+      </if>
+      <if test="null != name and '' != name">
+        name = #{name}
+      </if>
+      <if test="null != phone and '' != phone">
+        phone = #{phone}
+      </if>
+      <if test="null != addressId and '' != addressId">
+        addressId = #{addressId}
+      </if>
+      <if test="null != role">
+        role = #{role}
+      </if>
+    </where>
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update sm_user
     <set>

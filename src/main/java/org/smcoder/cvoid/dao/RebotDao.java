@@ -1,5 +1,6 @@
 package org.smcoder.cvoid.dao;
 
+import org.smcoder.cvoid.domain.PageRebot;
 import org.smcoder.cvoid.domain.Rebot;
 import org.smcoder.cvoid.example.RebotExample;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,6 @@ import java.util.List;
 @Repository
 public interface RebotDao extends MyBatisBaseDao<Rebot, Integer> {
     List<Rebot> selectByExample(RebotExample example);
+
+    List<Rebot> selectList(PageRebot pageRebot);
 }
