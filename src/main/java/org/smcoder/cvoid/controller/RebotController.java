@@ -41,7 +41,7 @@ public class RebotController {
         return new Response(1, list);
     }
 
-    @RequestMapping("topic/add")
+    @RequestMapping("topic/publish")
     @ResponseBody
     public Response add(@RequestBody Rebot rebot) {
         rebotDao.insertSelective(rebot);
